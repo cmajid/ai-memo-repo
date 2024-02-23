@@ -1,9 +1,10 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { WordsModule } from "./words/words.module";
 import { EventEmitterModule } from "@nestjs/event-emitter";
+import { AppController } from "./app.controller";
 import { LoggerService } from "./app.loggerService";
+import { AppService } from "./app.service";
+import { WordsModule } from "./modules/words/words.module";
+
 
 @Module({
   imports: [EventEmitterModule.forRoot(), WordsModule],

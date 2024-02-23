@@ -1,7 +1,8 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { TestingModule, Test } from "@nestjs/testing";
+import { UpdateWordDto } from "./dto/update-word.dto";
 import { WordsController } from "./words.controller";
 import { WordsService } from "./words.service";
-import { UpdateWordDto } from "./dto/update-word.dto";
+
 
 describe("WordsController", () => {
   let controller: WordsController;
