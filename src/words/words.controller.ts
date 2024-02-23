@@ -7,37 +7,36 @@ import {
   Param,
   Delete,
 } from "@nestjs/common";
-import { WordService } from "./word.service";
+import { WordsService } from "./words.service";
 import { CreateWordDto } from "./dto/create-word.dto";
 import { UpdateWordDto } from "./dto/update-word.dto";
 
-@Controller("word")
-export class WordController {
-  constructor(private readonly wordService: WordService) {}
+@Controller("words")
+export class WordsController {
+  constructor(private readonly wordsService: WordsService) {}
 
   @Post()
   create(@Body() createWordDto: CreateWordDto) {
-    console.log("CREATE", createWordDto);
-    return this.wordService.create(createWordDto);
+    return this.wordsService.create(createWordDto);
   }
 
   @Get()
   findAll() {
-    return this.wordService.findAll();
+    return this.wordsService.findAll();
   }
 
   @Get(":id")
   findOne(@Param("id") id: string) {
-    return this.wordService.findOne(+id);
+    return this.wordsService.findOne(+id);
   }
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateWordDto: UpdateWordDto) {
-    return this.wordService.update(+id, updateWordDto);
+    return this.wordsService.update(+id, updateWordDto);
   }
 
   @Delete(":id")
   remove(@Param("id") id: string) {
-    return this.wordService.remove(+id);
+    return this.wordsService.remove(+id);
   }
 }
