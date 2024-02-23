@@ -10,7 +10,7 @@ export class AppService {
   getHello(): string {
     this.eventEmitter.emit(
       events.LOGGER_LOG,
-      new LoggerLoggedEvent("Hello dear", Date.now())
+      new LoggerLoggedEvent("Hello dear", Date.now()),
     );
 
     return "Hello World!";
