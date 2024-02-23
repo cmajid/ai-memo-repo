@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { CreateWordDto } from "./dto/create-word.dto";
 import { UpdateWordDto } from "./dto/update-word.dto";
 
-
 @Injectable()
 export class WordsService {
   private users: UpdateWordDto[] = [];

@@ -5,7 +5,6 @@ import { LoggerService } from "./app.loggerService";
 import { AppService } from "./app.service";
 import { WordsModule } from "./modules/words/words.module";
 
-
 @Module({
   imports: [EventEmitterModule.forRoot(), WordsModule],
   controllers: [AppController],
