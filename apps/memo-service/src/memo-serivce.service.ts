@@ -4,10 +4,10 @@ import { events } from "./constans/events/event.constans";
 import { LoggerLoggedEvent } from "./events/logger-log.event";
 
 @Injectable()
-export class AppService {
+export class MemoService {
   constructor(private eventEmitter: EventEmitter2) {}
 
-  getHello(): string {
+  getHelloWorld(): string {
     this.eventEmitter.emit(
       events.LOGGER_LOG,
       new LoggerLoggedEvent("Hello dear", Date.now()),
