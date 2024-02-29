@@ -38,6 +38,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/logger/tsconfig.lib.json"
       }
+    },
+    "passport": {
+      "type": "application",
+      "root": "apps/passport",
+      "entryFile": "main",
+      "sourceRoot": "apps/passport/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/passport/tsconfig.app.json"
+      }
     }
   }
 }
