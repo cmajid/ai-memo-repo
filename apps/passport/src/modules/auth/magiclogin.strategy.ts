@@ -1,7 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { Strategy } from "passport-jwt";
 
+import Strategy from 'passport-magic-login'
 import { AuthService } from "./auth.service";
 
 @Injectable()

@@ -11,7 +11,7 @@ import {
 import { AuthService } from "./auth.service";
 import { PassportLoginDto } from "./dto/passport-login.dto";
 import { AuthGuard } from "@nestjs/passport";
-import MagicLoginStrategy from "passport-magic-login";
+import { MagicLoginStrategy } from "./magiclogin.strategy";
 
 @Controller("auth")
 export class AuthController {
@@ -30,9 +30,9 @@ export class AuthController {
     return this.strategy.send(req, res);
   }
 
-  @UseGuards(AuthGuard("magiclogin"))
+  @UseGuards(AuthGuard('magiclogin'))
   @Get("login/callback")
   callback(@Req() req) {
-    return this, this.authService.generateToken(req.user);
+    return this.authService.generateToken(req.user);
   }
 }

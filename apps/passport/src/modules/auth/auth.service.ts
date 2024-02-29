@@ -7,7 +7,7 @@ import { User } from "../users/entities/user.entity";
 export class AuthService {
   constructor(
     private userService: UsersService,
-    private jwtService: JwtService,
+   private jwtService: JwtService,
   ) {}
 
   generateToken(user: User) {

@@ -3,15 +3,14 @@ import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 import { UsersModule } from "../users/users.module";
 import { MagicLoginStrategy } from "./magiclogin.strategy";
-import { JwtStrategy } from "./jwt.strategy";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
+import { JwtStrategy } from "./jwt.strategy";
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
-    //.register({ defaultStrategy: "jwt" }),
     JwtModule.register({
       secret: "HEY", // TODO:: env
       signOptions: {
