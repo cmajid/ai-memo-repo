@@ -10,8 +10,8 @@ import {
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { PassportLoginDto } from "./dto/passport-login.dto";
-import { AuthGuard } from "@nestjs/passport";
-import { MemoMagicLoginStrategy } from "./memo-magiclogin.strategy";
+import { MemoMagicLoginStrategy } from "./strategies/memo-magiclogin.strategy";
+import { MagicLoginGuard } from "./guards/magiclogin.auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -30,7 +30,7 @@ export class AuthController {
     return this.strategy.send(req, res);
   }
 
-  @UseGuards(AuthGuard('magiclogin'))
+  @UseGuards(MagicLoginGuard)
   @Get("login/callback")
   callback(@Req() req) {
     return this.authService.generateToken(req.user);
