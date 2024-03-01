@@ -3,13 +3,14 @@ import { PassportStrategy } from "@nestjs/passport";
 
 import Strategy from 'passport-magic-login'
 import { AuthService } from "./auth.service";
+import appConfig from "config/app.config";
 
 @Injectable()
 export class MagicLoginStrategy extends PassportStrategy(Strategy) {
   private readonly logger = new Logger(MagicLoginStrategy.name);
   constructor(private authService: AuthService) {
     super({
-      secret: "HEY", // TODO:: env
+      secret: appConfig().appSecret,
       jwtOptions: {
         expiresIn: "5m",
       },
