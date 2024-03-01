@@ -5,7 +5,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import appConfig from "config/app.config";
 
 @Injectable()
-export class MemoRefreshJwtStrategy extends PassportStrategy(
+export class MemoRefreshTokenStrategy extends PassportStrategy(
   Strategy,
   "magiclogin-refresh",
 ) {
