@@ -1,12 +1,15 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 
-import Strategy from 'passport-magic-login'
+import Strategy from "passport-magic-login";
 import { AuthService } from "../auth.service";
 import appConfig from "config/app.config";
 
 @Injectable()
-export class MemoMagicLoginStrategy extends PassportStrategy(Strategy) {
+export class MemoMagicLoginStrategy extends PassportStrategy(
+  Strategy,
+  "magiclogin"
+) {
   private readonly logger = new Logger(MemoMagicLoginStrategy.name);
   constructor(private authService: AuthService) {
     super({

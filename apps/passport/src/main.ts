@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { PassportModule } from "./passport.module";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
 
 async function bootstrap() {

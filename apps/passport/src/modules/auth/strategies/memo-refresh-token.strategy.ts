@@ -5,10 +5,13 @@ import { PassportStrategy } from "@nestjs/passport";
 import appConfig from "config/app.config";
 
 @Injectable()
-export class MemoJwtStrategy extends PassportStrategy(Strategy, "jwt") {
+export class MemoRefreshJwtStrategy extends PassportStrategy(
+  Strategy,
+  "magiclogin-refresh",
+) {
   constructor(private authService: AuthService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromBodyField("refresh"),
       ignoreExpiration: false,
       secretOrKey: appConfig().appSecret,
     });

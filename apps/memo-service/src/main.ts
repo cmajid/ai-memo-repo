@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { MemoModule } from "./memo-serivce.module";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
 
 async function bootstrap() {

@@ -7,10 +7,20 @@ import { User } from "../users/entities/user.entity";
 export class AuthService {
   constructor(
     private userService: UsersService,
-   private jwtService: JwtService,
+    private jwtService: JwtService,
   ) {}
 
   generateToken(user: User) {
+    const payload = { sub: user.id, email: user.email };
+    return {
+      access_token: this.jwtService.sign(payload),
+      refresh_token: this.jwtService.sign(payload, {
+        expiresIn: "7d",
+      }),
+    };
+  }
+
+  refreshToken(user: User) {
     const payload = { sub: user.id, email: user.email };
     return {
       access_token: this.jwtService.sign(payload),

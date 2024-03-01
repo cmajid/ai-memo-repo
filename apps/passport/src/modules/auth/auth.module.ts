@@ -7,15 +7,16 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { MemoJwtStrategy } from "./strategies/memo-jwt.strategy";
 import { jwtConfig } from "config/jwt.config";
+import { MemoRefreshJwtStrategy } from "./strategies/memo-refresh-token.strategy";
 
 @Module({
-  imports: [
-    UsersModule,
-    PassportModule,
-    JwtModule.registerAsync(jwtConfig),
-  ],
+  imports: [UsersModule, PassportModule, JwtModule.registerAsync(jwtConfig)],
   controllers: [AuthController],
-  providers: [AuthService, MemoMagicLoginStrategy, MemoJwtStrategy],
+  providers: [
+    AuthService,
+    MemoMagicLoginStrategy,
+    MemoRefreshJwtStrategy,
+    MemoJwtStrategy,
+  ],
 })
 export class AuthModule {}
-

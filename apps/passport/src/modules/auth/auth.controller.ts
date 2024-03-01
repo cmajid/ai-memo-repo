@@ -12,6 +12,7 @@ import { AuthService } from "./auth.service";
 import { PassportLoginDto } from "./dto/passport-login.dto";
 import { MemoMagicLoginStrategy } from "./strategies/memo-magiclogin.strategy";
 import { MagicLoginGuard } from "./guards/magiclogin.auth.guard";
+import { MagicLoginRefreshGuard } from "./guards/magiclogin.refresh.jwt.auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -19,6 +20,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private strategy: MemoMagicLoginStrategy,
   ) {}
+
 
   @Post("login")
   login(
@@ -34,5 +36,11 @@ export class AuthController {
   @Get("login/callback")
   callback(@Req() req) {
     return this.authService.generateToken(req.user);
+  }
+
+  @UseGuards(MagicLoginRefreshGuard)
+  @Post("refresh")
+  refresh(@Req() req) {
+    return this.authService.refreshToken(req.user);
   }
 }
