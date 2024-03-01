@@ -11,13 +11,13 @@ import {
 import { AuthService } from "./auth.service";
 import { PassportLoginDto } from "./dto/passport-login.dto";
 import { AuthGuard } from "@nestjs/passport";
-import { MagicLoginStrategy } from "./magiclogin.strategy";
+import { MemoMagicLoginStrategy } from "./memo-magiclogin.strategy";
 
 @Controller("auth")
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private strategy: MagicLoginStrategy,
+    private strategy: MemoMagicLoginStrategy,
   ) {}
 
   @Post("login")

@@ -6,8 +6,8 @@ import { AuthService } from "./auth.service";
 import appConfig from "config/app.config";
 
 @Injectable()
-export class MagicLoginStrategy extends PassportStrategy(Strategy) {
-  private readonly logger = new Logger(MagicLoginStrategy.name);
+export class MemoMagicLoginStrategy extends PassportStrategy(Strategy) {
+  private readonly logger = new Logger(MemoMagicLoginStrategy.name);
   constructor(private authService: AuthService) {
     super({
       secret: appConfig().appSecret,

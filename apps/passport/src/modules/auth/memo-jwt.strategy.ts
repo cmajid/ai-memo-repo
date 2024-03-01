@@ -5,7 +5,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import appConfig from "config/app.config";
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class MemoJwtStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
