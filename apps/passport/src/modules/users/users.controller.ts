@@ -1,7 +1,7 @@
 import { Controller, Get, Req, UseGuards } from "@nestjs/common";
-import { JwtGuard } from "../auth/guards/jwt.auth.guard";
+import { GoogleGuard } from "../auth/guards/google.auth.guard";
 
-@UseGuards(JwtGuard)
+@UseGuards(GoogleGuard)
 @Controller("users")
 export class UserController {
   @Get("permit")

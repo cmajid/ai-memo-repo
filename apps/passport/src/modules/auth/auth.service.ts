@@ -7,7 +7,7 @@ import { User } from "../users/entities/user.entity";
 export class AuthService {
   constructor(
     private userService: UsersService,
-    private jwtService: JwtService,
+    private jwtService: JwtService
   ) {}
 
   generateToken(user: User) {
@@ -32,5 +32,13 @@ export class AuthService {
     if (!user) throw new UnauthorizedException();
 
     return user;
+  }
+
+  async googleLogin(user): Promise<any> {
+    const payload = { sub: user.email, email: user.email };
+
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 }
