@@ -1,33 +1,33 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/memo-service/src",
+  "sourceRoot": "apps/application/memo-service/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "builder": "swc",
     "typeCheck": true,
     "webpack": true,
-    "tsConfigPath": "apps/memo-service/tsconfig.app.json"
+    "tsConfigPath": "apps/application/memo-service/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/memo-service",
+  "root": "apps/application/memo-service",
   "projects": {
     "memo-service": {
       "type": "application",
-      "root": "apps/memo-service",
+      "root": "apps/application/memo-service",
       "entryFile": "main",
-      "sourceRoot": "apps/memo-service/src",
+      "sourceRoot": "apps/application/memo-service/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/memo-service/tsconfig.app.json"
+        "tsConfigPath": "apps/application/memo-service/tsconfig.app.json"
       }
     },
     "ai-service": {
       "type": "application",
-      "root": "apps/ai-service",
+      "root": "apps/application/ai-service",
       "entryFile": "main",
-      "sourceRoot": "apps/ai-service/src",
+      "sourceRoot": "apps/application/ai-service/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/ai-service/tsconfig.app.json"
+        "tsConfigPath": "apps/application/ai-service/tsconfig.app.json"
       }
     },
     "logger": {
@@ -41,11 +41,11 @@
     },
     "passport": {
       "type": "application",
-      "root": "apps/passport",
+      "root": "apps/application/passport",
       "entryFile": "main",
-      "sourceRoot": "apps/passport/src",
+      "sourceRoot": "apps/application/passport/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/passport/tsconfig.app.json"
+        "tsConfigPath": "apps/application/passport/tsconfig.app.json"
       }
     }
   }
