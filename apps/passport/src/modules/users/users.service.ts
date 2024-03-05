@@ -7,7 +7,7 @@ export class UsersService {
     {
       id: 1,
       name: "majid",
-      email: "majid@memo.app",
+      email: "majid.mjh@gmail.com",
     },
     {
       id: 2,
@@ -18,5 +18,11 @@ export class UsersService {
 
   findOneByEmail(email: string): User | undefined {
     return this.users.find((user) => user.email === email);
+  }
+
+  addUser(user: User): User {
+    user.id = this.users.length + 1;
+    this.users.push(user);
+    return user;
   }
 }

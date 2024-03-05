@@ -11,6 +11,7 @@ export class MemoJwtStrategy extends PassportStrategy(Strategy, "jwt") {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: appConfig().appSecret,
+      session: false, // Add this line
     });
   }
 

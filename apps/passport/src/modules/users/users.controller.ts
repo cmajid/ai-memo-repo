@@ -1,11 +1,20 @@
 import { Controller, Get, Req, UseGuards } from "@nestjs/common";
-import { GoogleGuard } from "../auth/guards/google.auth.guard";
+import { AuthGuard } from "@nestjs/passport";
 
-@UseGuards(GoogleGuard)
+
 @Controller("users")
 export class UserController {
+
+
   @Get("permit")
+  @UseGuards(AuthGuard('google'))
   permit(@Req() req) {
     return `Permit ${req.user.email}`;
+  }
+
+  @Get("jwt")
+  @UseGuards(AuthGuard('jwt'))
+  jwt(@Req() req) {
+    return `jwt ${req.user.email}`;
   }
 }
