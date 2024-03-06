@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/memo-service/src",
+  "sourceRoot": "apps/passport/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "builder": "swc",
     "typeCheck": true,
     "webpack": true,
-    "tsConfigPath": "apps/memo-service/tsconfig.app.json"
+    "tsConfigPath": "apps/passport/tsconfig.app.json"
   },
   "monorepo": true,
   "root": "apps/memo-service",
@@ -19,15 +19,6 @@
       "sourceRoot": "apps/memo-service/src",
       "compilerOptions": {
         "tsConfigPath": "apps/memo-service/tsconfig.app.json"
-      }
-    },
-    "ai-service": {
-      "type": "application",
-      "root": "apps/ai-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/ai-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/ai-service/tsconfig.app.json"
       }
     },
     "logger": {
