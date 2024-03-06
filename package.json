@@ -12,7 +12,6 @@
     "start:dev": "nest start --watch",
     "start:dev:all": "concurrently -c \"cyan,red,pink\" \"npm:concurrent-*\"",
     "concurrent-memo-start:dev": "nest start --watch memo-service",
-    "concurrent-ai-start:dev": "nest start --watch ai-service",
     "concurrent-passport:dev": "nest start --watch passport",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/memo-service/main",
