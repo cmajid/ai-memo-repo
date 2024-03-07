@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { CreateWordDto } from "./dto/create-word.dto";
 import { UpdateWordDto } from "./dto/update-word.dto";
 
-import { LoggerService } from "@ai-memo/logger";
-import { LoggerLoggedEvent } from "@ai-memo/logger/events/logger-log.event";
+import { LoggerService } from "libs/clogger/src";
+import { LoggerLoggedEvent } from "libs/clogger/src/events/logger-log.event";
 import { OnEvent } from "@nestjs/event-emitter";
 import { events } from "../../constans/events/event.constans";
 

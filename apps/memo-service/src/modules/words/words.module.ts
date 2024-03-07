@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { WordsService } from "./words.service";
 import { WordsController } from "./words.controller";
-import { LoggerModule } from "@ai-memo/logger";
+import { LoggerModule } from "libs/clogger/src";
 
 @Module({
   imports: [LoggerModule],

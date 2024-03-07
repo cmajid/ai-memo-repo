@@ -1,0 +1,21 @@
+services:
+  order:
+    build:
+      context: .
+      dockerfile: ./apps/order/Dockerfile
+      target: development
+    command: npm run start:dev order
+    env_file:
+      - ./apps/order/.env
+    # depends_on:
+      # - mongodb-primary
+      # - mongodb-secondary
+      # - mongodb-arbiter
+      # - billing
+      # - auth
+      # - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3003:3003'

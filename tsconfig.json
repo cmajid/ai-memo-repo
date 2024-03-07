@@ -19,10 +19,16 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@ai-memo/logger": [
-        "libs/logger/src"
+        "libs/clogger/src"
       ],
       "@ai-memo/logger/*": [
-        "libs/logger/src/*"
+        "libs/clogger/src/*"
+      ],
+      "@app/common": [
+        "libs/common/src"
+      ],
+      "@app/common/*": [
+        "libs/common/src/*"
       ]
     }
   }
