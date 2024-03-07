@@ -11,4 +11,9 @@ export class OrderController {
   async createOrder(@Body() request: CreateOrderRequest){
     return this.orderService.createOrder(request);
   }
+
+  @Get()
+  async getOrders(){
+    return this.orderService.getOrders();
+  }
 }
