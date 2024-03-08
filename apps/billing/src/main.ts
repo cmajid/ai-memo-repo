@@ -1,10 +1,13 @@
 import { NestFactory } from "@nestjs/core";
 import { BillingModule } from "./billing.module";
+import { RmqService } from '@app/common';
 
 async function bootstrap() {
-  const port = 3004;
   const app = await NestFactory.create(BillingModule);
-  await app.listen(port);
-  console.log(`Billing is running on port ${port}`);
+
+  const rmqService = app.get<RmqService>(RmqService);
+  app.connectMicroservice(rmqService.getOptions("BILLING"))
+  await app.startAllMicroservices();
+  console.log(`Billing is running on port !!!!`);
 }
 bootstrap();
