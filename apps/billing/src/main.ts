@@ -8,6 +8,6 @@ async function bootstrap() {
   const rmqService = app.get<RmqService>(RmqService);
   app.connectMicroservice(rmqService.getOptions("BILLING"))
   await app.startAllMicroservices();
-  console.log(`Billing is running on port !!!!`);
+  console.log(`Billing is running on microserives`);
 }
 bootstrap();
