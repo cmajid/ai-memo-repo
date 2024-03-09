@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { User } from "./entities/user.entity";
 
 @Injectable()
@@ -8,11 +8,13 @@ export class UsersService {
       id: 1,
       name: "majid",
       email: "majid.mjh@gmail.com",
+      picture: "",
     },
     {
       id: 2,
       name: "maryam",
       email: "maryam@memo.app",
+      picture: "",
     },
   ];
 
@@ -20,9 +22,10 @@ export class UsersService {
     return this.users.find((user) => user.email === email);
   }
 
-  addUser(user: User): User {
-    user.id = this.users.length + 1;
-    this.users.push(user);
+  validateUser(email: string) {
+    const user = this.findOneByEmail(email);
+    if (!user) throw new UnauthorizedException();
+
     return user;
   }
 }
