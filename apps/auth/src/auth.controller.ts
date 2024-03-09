@@ -12,7 +12,7 @@ export class AuthController {
   }
 
 
-  @Get("permit")
+  @Get("google/login")
   @UseGuards(AuthGuard("google"))
   permit(@Req() req) {
     return `Permit ${req.user.email}`;
