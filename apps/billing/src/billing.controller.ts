@@ -7,7 +7,7 @@ import { EventPattern, Payload, Ctx, RmqContext } from "@nestjs/microservices";
 export class BillingController {
   constructor(
     private readonly billingService: BillingService,
-    private readonly rmqService: RmqService
+    private readonly rmqService: RmqService,
   ) {}
 
   @Get()

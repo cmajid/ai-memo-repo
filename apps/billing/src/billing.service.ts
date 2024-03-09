@@ -5,7 +5,7 @@ export class BillingService {
   private readonly logger = new Logger(BillingService.name);
 
   bill(data: any) {
-   this.logger.log(`Billing...`, data);
+    this.logger.log(`Billing...`, data);
   }
   getHello(): string {
     return "Hello World!";

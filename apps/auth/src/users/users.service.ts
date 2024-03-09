@@ -8,20 +8,19 @@ export class UsersService {
 
   async tryToRegister(user: User): Promise<boolean> {
     const existUser = await this.findOneByEmail(user.email);
-    console.log("existUser", existUser)
+    console.log("existUser", existUser);
     if (!existUser) {
-
-      console.log("creaetuser", user)
+      console.log("creaetuser", user);
       await this.createUser(user);
     }
 
     return true;
   }
   async createUser(request: User) {
-    console.log("request" , request)
+    console.log("request", request);
     const user = await this.usersRepository.create(request);
 
-    console.log("user" , user)
+    console.log("user", user);
 
     return user;
   }

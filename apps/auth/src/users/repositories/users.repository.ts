@@ -4,14 +4,13 @@ import { Connection, Model } from "mongoose";
 import { AbstractRepository } from "@app/common";
 import { Injectable, Logger } from "@nestjs/common";
 
-
 @Injectable()
 export class UsersRepository extends AbstractRepository<User> {
   protected readonly logger = new Logger(User.name);
 
   constructor(
     @InjectModel(User.name) orderModel: Model<User>,
-    @InjectConnection() connection: Connection
+    @InjectConnection() connection: Connection,
   ) {
     super(orderModel, connection);
   }

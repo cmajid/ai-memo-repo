@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { UsersService } from "./users/users.service";
 import { ConfigModule } from "@nestjs/config";
 import * as Joi from "joi";
 import { PassportModule } from "@nestjs/passport";
@@ -26,10 +25,6 @@ import { UsersModule } from "./users/users.module";
     }),
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    MemoJwtStrategy,
-    MemoGoogleStrategy,
-  ],
+  providers: [AuthService, MemoJwtStrategy, MemoGoogleStrategy],
 })
 export class AuthModule {}

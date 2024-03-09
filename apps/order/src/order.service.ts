@@ -10,7 +10,7 @@ import { lastValueFrom } from "rxjs";
 export class OrderService {
   constructor(
     private readonly orderRepository: OrderRepository,
-    @Inject(BILLING_SERVICE) private billingClient: ClientProxy
+    @Inject(BILLING_SERVICE) private billingClient: ClientProxy,
   ) {}
 
   async getOrders() {
@@ -22,7 +22,7 @@ export class OrderService {
     try {
       const order = this.orderRepository.create(request, { session });
       await lastValueFrom(
-        this.billingClient.emit("order_created", { request })
+        this.billingClient.emit("order_created", { request }),
       );
       await session.commitTransaction();
       return order;

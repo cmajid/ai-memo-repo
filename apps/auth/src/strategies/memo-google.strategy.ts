@@ -14,7 +14,7 @@ config();
 export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
   constructor(
     private usersService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     super({
       clientID: appConfig().googleClientId,
@@ -27,7 +27,7 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
     accessToken: string,
     refreshToken: string,
     profile: Profile,
-    done: VerifyCallback
+    done: VerifyCallback,
   ): Promise<any> {
     const user = {
       provider: "google",
