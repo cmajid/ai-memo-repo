@@ -8,11 +8,11 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConfig } from "config/jwt.config";
 import { MemoJwtStrategy } from "./strategies/memo-jwt.strategy";
 import { MemoGoogleStrategy } from "./strategies/memo-google.strategy";
-import { UsersModule } from "./users/users.module";
+import { UserModule } from "./user/user.module";
 
 @Module({
   imports: [
-    UsersModule,
+    UserModule,
     PassportModule,
     JwtModule.registerAsync(jwtConfig),
     ConfigModule.forRoot({

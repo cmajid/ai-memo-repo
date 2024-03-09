@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { User } from "./entities/user.entity";
-import { UsersRepository } from "./repositories/users.repository";
+import { UserRepository } from "./repositories/user.repository";
+import { User } from "./schemas/user.schema";
 
 @Injectable()
-export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {}
+export class UserService {
+  constructor(private readonly userRepository: UserRepository) {}
 
   async tryToRegister(user: User): Promise<boolean> {
     const existUser = await this.findOneByEmail(user.email);
@@ -18,7 +18,7 @@ export class UsersService {
   }
   async createUser(request: User) {
     console.log("request", request);
-    const user = await this.usersRepository.create(request);
+    const user = await this.userRepository.create(request);
 
     console.log("user", user);
 
@@ -26,7 +26,7 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string) {
-    const user = await this.usersRepository.findOne({ email });
+    const user = await this.userRepository.findOne({ email });
     return user;
   }
 

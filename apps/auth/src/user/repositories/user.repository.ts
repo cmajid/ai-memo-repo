@@ -5,7 +5,7 @@ import { AbstractRepository } from "@app/common";
 import { Injectable, Logger } from "@nestjs/common";
 
 @Injectable()
-export class UsersRepository extends AbstractRepository<User> {
+export class UserRepository extends AbstractRepository<User> {
   protected readonly logger = new Logger(User.name);
 
   constructor(

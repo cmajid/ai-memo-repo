@@ -2,9 +2,9 @@ import { DatabaseModule } from "@app/common";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { User, UserSchema } from "./schemas/user.schema";
-import { UsersRepository } from "./repositories/users.repository";
-import { UsersService } from "./users.service";
-import { UsersController } from "./users.controller";
+import { UserRepository } from "./repositories/user.repository";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
 
 @Module({
   imports: [
@@ -16,8 +16,8 @@ import { UsersController } from "./users.controller";
       },
     ]),
   ],
-  controllers: [UsersController],
-  exports: [UsersService],
-  providers: [UsersRepository, UsersService],
+  controllers: [UserController],
+  exports: [UserService],
+  providers: [UserRepository, UserService],
 })
-export class UsersModule {}
+export class UserModule {}

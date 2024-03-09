@@ -5,15 +5,15 @@ import { config } from "dotenv";
 import { BadRequestException, Injectable } from "@nestjs/common";
 import appConfig from "config/app.config";
 import { AuthService } from "../auth.service";
-import { UsersService } from "../users/users.service";
-import { User } from "../users/entities/user.entity";
+import { UserService } from "../user/user.service";
+import { User } from "../user/schemas/user.schema";
 
 config();
 
 @Injectable()
 export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
   constructor(
-    private usersService: UsersService,
+    private userService: UserService,
     private authService: AuthService,
   ) {
     super({
@@ -35,7 +35,7 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
       email: profile.emails[0].value,
       photo: profile.photos[0].value,
     } as User;
-    const verify = this.usersService.tryToRegister(user);
+    const verify = this.userService.tryToRegister(user);
     if (!verify) throw new BadRequestException();
 
     const jwtToken = this.authService.login(accessToken, user.email, user.name);
