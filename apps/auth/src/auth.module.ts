@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { UsersController } from "./users/users.controller";
 import { UsersService } from "./users/users.service";
 import { ConfigModule } from "@nestjs/config";
 import * as Joi from "joi";
@@ -10,9 +9,11 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConfig } from "config/jwt.config";
 import { MemoJwtStrategy } from "./strategies/memo-jwt.strategy";
 import { MemoGoogleStrategy } from "./strategies/memo-google.strategy";
+import { UsersModule } from "./users/users.module";
 
 @Module({
   imports: [
+    UsersModule,
     PassportModule,
     JwtModule.registerAsync(jwtConfig),
     ConfigModule.forRoot({
@@ -24,7 +25,11 @@ import { MemoGoogleStrategy } from "./strategies/memo-google.strategy";
       envFilePath: "./apps/auth/.env",
     }),
   ],
-  controllers: [AuthController, UsersController],
-  providers: [AuthService, UsersService, MemoJwtStrategy, MemoGoogleStrategy],
+  controllers: [AuthController],
+  providers: [
+    AuthService,
+    MemoJwtStrategy,
+    MemoGoogleStrategy,
+  ],
 })
 export class AuthModule {}
