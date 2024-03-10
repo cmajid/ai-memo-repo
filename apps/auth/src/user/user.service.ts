@@ -7,7 +7,7 @@ import { ClientProxy } from "@nestjs/microservices";
 export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
-    @Inject("USER_SERVICE") private readonly userServiceRmqClient: ClientProxy
+    @Inject("USER_SERVICE") private readonly userServiceRmqClient: ClientProxy,
   ) {}
 
   async tryToRegister(user: User): Promise<boolean> {

@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { TextService } from './text.service';
-import { EventPattern } from '@nestjs/microservices';
+import { Controller, Get } from "@nestjs/common";
+import { TextService } from "./text.service";
+import { EventPattern } from "@nestjs/microservices";
 
 @Controller()
 export class TextController {
@@ -11,9 +11,8 @@ export class TextController {
     return this.textService.getHello();
   }
 
-  @EventPattern('user_created')
-  async handleUserCreated(data: any){
+  @EventPattern("user_created")
+  async handleUserCreated(data: any) {
     console.log("user_created catch in text with", data);
   }
-
 }

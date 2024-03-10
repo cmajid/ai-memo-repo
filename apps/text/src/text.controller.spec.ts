@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TextController } from './text.controller';
-import { TextService } from './text.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { TextController } from "./text.controller";
+import { TextService } from "./text.service";
 
-describe('TextController', () => {
+describe("TextController", () => {
   let textController: TextController;
 
   beforeEach(async () => {
@@ -14,9 +14,9 @@ describe('TextController', () => {
     textController = app.get<TextController>(TextController);
   });
 
-  describe('root', () => {
+  describe("root", () => {
     it('should return "Hello World!"', () => {
-      expect(textController.getHello()).toBe('Hello World!');
+      expect(textController.getHello()).toBe("Hello World!");
     });
   });
 });
