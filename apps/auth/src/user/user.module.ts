@@ -5,6 +5,8 @@ import { User, UserSchema } from "./schemas/user.schema";
 import { UserRepository } from "./repositories/user.repository";
 import { UserService } from "./user.service";
 import { UserController } from "./user.controller";
+import { ClientsModule, Transport } from "@nestjs/microservices";
+import { get } from 'env-var';
 
 @Module({
   imports: [
@@ -15,6 +17,24 @@ import { UserController } from "./user.controller";
         schema: UserSchema,
       },
     ]),
+
+    //RMQ
+    ClientsModule.register([
+			{
+				name: 'USER_SERVICE',
+				transport: Transport.RMQ,
+				options: {
+					urls: [
+						get('RABBIT_MQ_URI').required().asString(),
+					],
+					queue: 	get('RABBIT_MQ_USER_QUEUE_NAME').required().asString(),
+					queueOptions: {
+						durable: false,
+					},
+				},
+			},
+		]),
+
   ],
   controllers: [UserController],
   exports: [UserService],

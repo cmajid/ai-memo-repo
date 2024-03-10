@@ -1,34 +1,4 @@
 services:
-  order:
-    build:
-      context: .
-      dockerfile: ./apps/order/Dockerfile
-      target: development
-    command: npm run start:dev order
-    env_file:
-      - ./apps/order/.env
-    depends_on:
-      - billing
-      - auth
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - '3003:3003'
-
-  billing:
-    build:
-      context: .
-      dockerfile: ./apps/billing/Dockerfile
-      target: development
-    command: npm run start:dev billing
-    env_file:
-      - ./apps/billing/.env
-    depends_on:
-      - auth
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
 
   auth:
     build:
@@ -44,5 +14,50 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-
+  text:
+    build:
+      context: .
+      dockerfile: ./apps/text/Dockerfile
+      target: development
+    command: npm run start:dev text
+    depends_on:
+      - auth
+    ports:
+      - '3005:3005'
+    env_file:
+      - ./apps/text/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   
+
+    # order:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/order/Dockerfile
+  #     target: development
+  #   command: npm run start:dev order
+  #   env_file:
+  #     - ./apps/order/.env
+  #   depends_on:
+  #     - billing
+  #     - auth
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - '3003:3003'
+
+  # billing:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/billing/Dockerfile
+  #     target: development
+  #   command: npm run start:dev billing
+  #   env_file:
+  #     - ./apps/billing/.env
+  #   depends_on:
+  #     - auth
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
