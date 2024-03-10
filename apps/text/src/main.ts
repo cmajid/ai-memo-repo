@@ -10,7 +10,7 @@ async function bootstrap() {
     transport: Transport.RMQ,
     options: {
       urls: [get("RABBIT_MQ_URI").required().asString()],
-      queue: get("RABBIT_MQ_USER_QUEUE_NAME").required().asString(),
+      queue: 'user_queue',
       queueOptions: {
         durable: false,
       },
