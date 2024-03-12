@@ -7,7 +7,8 @@
     "builder": "swc",
     "typeCheck": true,
     "webpack": true,
-    "tsConfigPath": "apps/auth/tsconfig.app.json"
+    "tsConfigPath": "apps/auth/tsconfig.app.json",
+    "assets": ["**/*.proto"]
   },
   "monorepo": true,
   "root": "apps/memo-service",
@@ -45,7 +46,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/auth/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/auth/tsconfig.app.json",
+        "assets": ["**/*.proto"],
+        "watchAssets": true
       }
     },
     "text": {

@@ -8,24 +8,25 @@ services:
     command: npm run start:dev auth
     ports:
       - '3002:3002'
+      - '50052:50052'
     env_file:
       - ./apps/auth/.env
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  text:
-    build:
-      context: .
-      dockerfile: ./apps/text/Dockerfile
-      target: development
-    command: npm run start:dev text
-    depends_on:
-      - auth
-    ports:
-      - '3005:3005'
-    env_file:
-      - ./apps/text/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+  # text:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/text/Dockerfile
+  #     target: development
+  #   command: npm run start:dev text
+  #   depends_on:
+  #     - auth
+  #   ports:
+  #     - '3005:3005'
+  #   env_file:
+  #     - ./apps/text/.env
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules

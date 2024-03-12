@@ -20,6 +20,7 @@ import { UserModule } from "./user/user.module";
       validationSchema: Joi.object({
         MONGODB_URI: Joi.string().required(),
         PORT: Joi.number().required(),
+        RABBIT_MQ_URI: Joi.string().required(),
       }),
       envFilePath: "./apps/auth/.env",
     }),
