@@ -20,6 +20,6 @@ async function bootstrap() {
   await app.startAllMicroservices();
   await app.listen(3005);
 
-  console.log(`Auth is running on port ${3005}`);
+  console.log(`Text is running on port ${3005}`);
 }
 bootstrap();

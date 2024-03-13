@@ -15,18 +15,34 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  # text:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/text/Dockerfile
-  #     target: development
-  #   command: npm run start:dev text
-  #   depends_on:
-  #     - auth
-  #   ports:
-  #     - '3005:3005'
-  #   env_file:
-  #     - ./apps/text/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
+  text:
+    build:
+      context: .
+      dockerfile: ./apps/text/Dockerfile
+      target: development
+    command: npm run start:dev text
+    depends_on:
+      - auth
+    ports:
+      - '3005:3005'
+    env_file:
+      - ./apps/text/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    depends_on:
+      - auth
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./apps/api-gateway/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
