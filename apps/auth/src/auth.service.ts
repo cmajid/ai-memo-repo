@@ -10,4 +10,11 @@ export class AuthService {
     const jwtToken = this.jwtService.sign(payload);
     return jwtToken;
   }
+  getAccessToken(userId: string) {
+    const newSignedPayload = { userId };
+    const options = { expiresIn: "1h" }; // Token expiration time
+
+    const accessToken = this.jwtService.sign(newSignedPayload, options);
+    return accessToken;
+  }
 }
