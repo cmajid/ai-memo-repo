@@ -16,6 +16,9 @@ export class User extends AbstractDocument {
 
   @Prop()
   provider: string;
+
+  @Prop()
+  providerId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

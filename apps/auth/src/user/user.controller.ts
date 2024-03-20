@@ -9,7 +9,7 @@ export class UserController {
   @Get("jwt")
   @UseGuards(AuthGuard("jwt"))
   async jwt(@CurrentUser() user: User) {
-    return `jwt ${user.email}`;
+    return `jwt ${JSON.stringify(user)}`;
   }
 
   @GrpcMethod("UserService", "FindOneUser")
