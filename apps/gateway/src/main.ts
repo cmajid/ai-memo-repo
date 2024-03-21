@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { ApiGatewayModule } from './api-gateway.module';
+import { ApiGatewayModule } from './gateway.module';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {

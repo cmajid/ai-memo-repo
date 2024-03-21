@@ -64,13 +64,13 @@
         "tsConfigPath": "apps/text/tsconfig.app.json"
       }
     },
-    "api-gateway": {
+    "gateway": {
       "type": "application",
-      "root": "apps/api-gateway",
+      "root": "apps/gateway",
       "entryFile": "main",
-      "sourceRoot": "apps/api-gateway/src",
+      "sourceRoot": "apps/gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/api-gateway/tsconfig.app.json",
+        "tsConfigPath": "apps/gateway/tsconfig.app.json",
         "assets": [
           "**/*.proto"
         ],

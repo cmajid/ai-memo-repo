@@ -31,18 +31,18 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  api-gateway:
+  gateway:
     build:
       context: .
-      dockerfile: ./apps/api-gateway/Dockerfile
+      dockerfile: ./apps/gateway/Dockerfile
       target: development
-    command: npm run start:dev api-gateway
+    command: npm run start:dev gateway
     depends_on:
       - auth
     ports:
       - '3000:3000'
     env_file:
-      - ./apps/api-gateway/.env
+      - ./apps/gateway/.env
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules

@@ -14,7 +14,7 @@ import { join } from "path";
         PORT: Joi.number().required(),
         GRPC_URI: Joi.string().required(),
       }),
-      envFilePath: "./apps/api-gateway/.env",
+      envFilePath: "./apps/gateway/.env",
     }),
 
     // grpc
