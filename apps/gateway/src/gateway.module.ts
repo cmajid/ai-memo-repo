@@ -8,6 +8,8 @@ import { join } from "path";
 
 @Module({
   imports: [
+
+    // App config
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
