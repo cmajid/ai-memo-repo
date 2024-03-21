@@ -33,4 +33,4 @@ import { join } from "path";
   controllers: [UserController],
   providers: [],
 })
-export class ApiGatewayModule {}
+export class GatewayModule {}
