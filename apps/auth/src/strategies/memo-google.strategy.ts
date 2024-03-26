@@ -38,7 +38,8 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
     const verify = this.userService.tryToRegister(user);
     if (!verify) throw new BadRequestException();
 
-    const jwtToken = this.authService.login(accessToken, user.email, user.name);
+    // const jwtToken = this.authService.login(accessToken, user.email, user.name);
+    const jwtToken = this.authService.login(user);
     done(null, jwtToken);
   }
 }
