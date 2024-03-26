@@ -7,11 +7,11 @@ export class UserController implements OnModuleInit {
   constructor(@Inject("USER_SERVICE") private readonly client: ClientGrpc) {}
 
   onModuleInit() {
-   this.userService = this.client.getService("UserService");
+    this.userService = this.client.getService("UserService");
   }
 
   @Get("users")
   async getUsers() {
-    return this.userService.FindOneUser({id: "TEST API GATEWAY"});
+    return this.userService.FindOneUser({ id: "TEST API GATEWAY" });
   }
 }

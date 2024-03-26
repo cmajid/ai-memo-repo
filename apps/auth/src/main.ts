@@ -14,10 +14,10 @@ async function bootstrap() {
     transport: Transport.GRPC,
     options: {
       package: "users",
-      protoPath: join(__dirname, '../../../proto/user.proto'),
+      protoPath: join(__dirname, "../../../proto/user.proto"),
       url: grpcPort,
-    }
-  })
+    },
+  });
 
   await app.startAllMicroservices();
   await app.listen(port);

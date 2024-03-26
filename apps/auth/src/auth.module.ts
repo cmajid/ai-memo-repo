@@ -15,6 +15,8 @@ import { UserModule } from "./user/user.module";
     UserModule,
     PassportModule,
     JwtModule.registerAsync(jwtConfig),
+
+    // App config
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({

@@ -8,7 +8,6 @@ import { join } from "path";
 
 @Module({
   imports: [
-
     // App config
     ConfigModule.forRoot({
       isGlobal: true,

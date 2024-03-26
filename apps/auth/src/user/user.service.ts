@@ -10,7 +10,7 @@ export class UserService {
     @Inject("USER_SERVICE") private readonly userServiceRmqClient: ClientProxy,
   ) {}
 
-  async tryToRegister(user: User){
+  async tryToRegister(user: User) {
     const existUser = await this.findOneByEmail(user.email);
     if (!existUser) {
       await this.createUser(user);

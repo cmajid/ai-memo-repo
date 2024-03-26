@@ -11,7 +11,7 @@ export class AuthService {
   private readonly client = new OAuth2Client(appConfig().googleClientAppId);
   constructor(
     private readonly jwtService: JwtService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
   ) {}
 
   login(user: User) {
