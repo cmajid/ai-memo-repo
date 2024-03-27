@@ -27,6 +27,7 @@ export class UserController implements OnModuleInit {
   @Get("jwt")
   @UseGuards(AuthGuard("jwt"))
   async jwt(@CurrentUser() user: User) {
-    return `jwt ${JSON.stringify(user)}`;
+    console.log(`jwt ${JSON.stringify(user)}`);
+    return this.userService.FindOneUser({ id: "TEST API GATEWAY" });
   }
 }
