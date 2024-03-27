@@ -5,15 +5,10 @@ import * as Joi from "joi";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { get } from "env-var";
 import { join } from "path";
-import { MemoJwtStrategy } from "./memo-jwt-strategy";
-import { JwtModule } from "@nestjs/jwt";
-import { jwtConfig } from "config/jwt.config";
+import { MemoJwtStrategy } from "../../../libs/shared/src/auth/strategies/memo-jwt-strategy";
 
 @Module({
   imports: [
-    ////////////
-    JwtModule.registerAsync(jwtConfig),
-    //////////
 
     // App config
     ConfigModule.forRoot({

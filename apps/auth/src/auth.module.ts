@@ -2,13 +2,13 @@ import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { ConfigModule } from "@nestjs/config";
-import * as Joi from "joi";
 import { PassportModule } from "@nestjs/passport";
-import { JwtModule } from "@nestjs/jwt";
-import { jwtConfig } from "config/jwt.config";
 import { MemoJwtStrategy } from "./strategies/memo-jwt.strategy";
 import { MemoGoogleStrategy } from "./strategies/memo-google.strategy";
 import { UserModule } from "./user/user.module";
+import * as Joi from "joi";
+import { JwtModule } from "@nestjs/jwt";
+import { jwtConfig } from "@app/shared/auth/jwt.config";
 
 @Module({
   imports: [

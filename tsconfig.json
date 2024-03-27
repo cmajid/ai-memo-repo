@@ -24,11 +24,11 @@
       "@ai-memo/logger/*": [
         "libs/clogger/src/*"
       ],
-      "@app/common": [
-        "libs/common/src"
+      "@app/shared": [
+        "libs/shared/src"
       ],
-      "@app/common/*": [
-        "libs/common/src/*"
+      "@app/shared/*": [
+        "libs/shared/src/*"
       ]
     }
   }

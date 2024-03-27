@@ -1,4 +1,4 @@
-import { AbstractDocument } from "@app/common";
+import { AbstractDocument } from "libs/shared/src";
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({

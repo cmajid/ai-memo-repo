@@ -1,4 +1,4 @@
-import { DatabaseModule } from "@app/common";
+import { DatabaseModule } from "libs/shared/src";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { User, UserSchema } from "./schemas/user.schema";
