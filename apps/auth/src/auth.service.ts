@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import appConfig from "config/app.config";
 import { OAuth2Client, TokenPayload } from "google-auth-library";
 import { User } from "./user/schemas/user.schema";
 import { UserService } from "./user/user.service";
 import { AuthTokenVerifyRequestDto } from "./dto/auth-token-verify-request.dto";
+import { get } from "env-var";
 
 @Injectable()
 export class AuthService {
-  private readonly client = new OAuth2Client(appConfig().googleClientAppId);
+  private readonly client = new OAuth2Client(get('google_client_id').required().asString());
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
@@ -31,7 +31,7 @@ export class AuthService {
   async verifyToken(idToken: string) {
     const ticket = await this.client.verifyIdToken({
       idToken,
-      audience: appConfig().googleClientAppId,
+      audience: get('google_client_id').required().asString(),
     });
     const payload = ticket.getPayload();
     const user = this.mapUserEntity(payload);

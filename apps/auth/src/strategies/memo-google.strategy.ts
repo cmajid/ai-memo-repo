@@ -3,10 +3,11 @@ import { Profile, Strategy, VerifyCallback } from "passport-google-oauth20";
 import { config } from "dotenv";
 
 import { BadRequestException, Injectable } from "@nestjs/common";
-import appConfig from "config/app.config";
+
 import { AuthService } from "../auth.service";
 import { UserService } from "../user/user.service";
 import { User } from "../user/schemas/user.schema";
+import { get } from "env-var";
 
 config();
 
@@ -17,8 +18,8 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
     private authService: AuthService,
   ) {
     super({
-      clientID: appConfig().googleClientId,
-      clientSecret: appConfig().googleClientSecret,
+      clientID: get('google_client_id').required().asString(),
+      clientSecret: get('google_client_secret').required().asString(),
       callbackURL: "http://localhost:3001/auth/google/callback",
       scope: ["email", "profile"],
     });
