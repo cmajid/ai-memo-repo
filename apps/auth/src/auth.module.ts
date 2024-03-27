@@ -9,41 +9,32 @@ import * as Joi from "joi";
 import { JwtModule } from "@nestjs/jwt";
 import { jwtConfig } from "@app/shared/auth/jwt.config";
 import { MemoJwtStrategy } from "@app/shared/auth/strategies/memo-jwt-strategy";
-import { ClientsModule, Transport } from "@nestjs/microservices";
-import { join } from "path";
-import { get } from "env-var";
+import { ClientsModule } from "@nestjs/microservices";
+import SharedModule from "@app/shared/shared.module";
+
+const appConfig = {
+  isGlobal: true,
+  validationSchema: Joi.object({
+    MONGODB_URI: Joi.string().required(),
+    PORT: Joi.number().required(),
+    RABBIT_MQ_URI: Joi.string().required(),
+  }),
+  envFilePath: "./apps/auth/.env",
+};
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
     JwtModule.registerAsync(jwtConfig),
-
-    // App config
-    ConfigModule.forRoot({
-      isGlobal: true,
-      validationSchema: Joi.object({
-        MONGODB_URI: Joi.string().required(),
-        PORT: Joi.number().required(),
-        RABBIT_MQ_URI: Joi.string().required(),
-      }),
-      envFilePath: "./apps/auth/.env",
-    }),
-
-    // grpc
+    ConfigModule.forRoot(appConfig),
     ClientsModule.register([
-      {
-        name: "USER_SERVICE",
-        transport: Transport.GRPC,
-        options: {
-          package: "users",
-          protoPath: join(__dirname, "../../../proto/user.proto"),
-          url: get("GRPC_URI").required().asString(),
-        },
-      },
+      SharedModule.getUserService_gRPC_Client()
     ]),
   ],
   controllers: [AuthController],
   providers: [AuthService, MemoJwtStrategy, MemoGoogleStrategy],
 })
 export class AuthModule {}
+
+
