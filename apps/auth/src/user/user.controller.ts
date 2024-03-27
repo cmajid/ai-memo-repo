@@ -3,9 +3,13 @@ import { AuthGuard } from "@nestjs/passport";
 import { CurrentUser } from "../current-user.decorator";
 import { User } from "./schemas/user.schema";
 import { GrpcMethod } from "@nestjs/microservices";
+import { UserService } from "./user.service";
 
 @Controller("users")
 export class UserController {
+
+  constructor(private readonly userService : UserService){}
+
   @Get("jwt")
   @UseGuards(AuthGuard("jwt"))
   async jwt(@CurrentUser() user: User) {
@@ -16,5 +20,13 @@ export class UserController {
   findOne(data) {
     console.log("UserService", "FindOneUser", data);
     return data;
+  }
+
+  @GrpcMethod("UserService", "ValidateUser")
+  validateUser(data) {
+    console.log("UserService", "ValidateUser", data);
+    const result = this.userService.validateUser(data.email)
+    console.log("result", result);
+    return result
   }
 }

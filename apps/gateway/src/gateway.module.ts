@@ -5,9 +5,16 @@ import * as Joi from "joi";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { get } from "env-var";
 import { join } from "path";
+import { MemoJwtStrategy } from "./memo-jwt-strategy";
+import { JwtModule } from "@nestjs/jwt";
+import { jwtConfig } from "config/jwt.config";
 
 @Module({
   imports: [
+    ////////////
+    JwtModule.registerAsync(jwtConfig),
+    //////////
+
     // App config
     ConfigModule.forRoot({
       isGlobal: true,
@@ -32,6 +39,6 @@ import { join } from "path";
     ]),
   ],
   controllers: [UserController],
-  providers: [],
+  providers: [MemoJwtStrategy],
 })
 export class GatewayModule {}

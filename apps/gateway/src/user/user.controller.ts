@@ -1,5 +1,8 @@
-import { Controller, Get, Inject, OnModuleInit } from "@nestjs/common";
+import { Controller, Get, Inject, OnModuleInit, UseGuards } from "@nestjs/common";
 import { ClientGrpc } from "@nestjs/microservices";
+import { AuthGuard } from "@nestjs/passport";
+import { CurrentUser } from "apps/auth/src/current-user.decorator";
+import { User } from "apps/auth/src/user/schemas/user.schema";
 
 @Controller("users")
 export class UserController implements OnModuleInit {
@@ -13,5 +16,12 @@ export class UserController implements OnModuleInit {
   @Get("users")
   async getUsers() {
     return this.userService.FindOneUser({ id: "TEST API GATEWAY" });
+  }
+
+
+  @Get("jwt")
+  @UseGuards(AuthGuard("jwt"))
+  async jwt(@CurrentUser() user: User) {
+    return `jwt ${JSON.stringify(user)}`;
   }
 }

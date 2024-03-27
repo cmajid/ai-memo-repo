@@ -15,15 +15,6 @@
   "monorepo": true,
   "root": "apps/memo-service",
   "projects": {
-    "memo-service": {
-      "type": "application",
-      "root": "apps/memo-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/memo-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/memo-service/tsconfig.app.json"
-      }
-    },
     "clogger": {
       "type": "library",
       "root": "libs/logger",
@@ -84,6 +75,15 @@
       "sourceRoot": "apps/user/src",
       "compilerOptions": {
         "tsConfigPath": "apps/user/tsconfig.app.json"
+      }
+    },
+    "shared": {
+      "type": "library",
+      "root": "libs/shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared/tsconfig.lib.json"
       }
     }
   }
