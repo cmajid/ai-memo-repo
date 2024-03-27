@@ -1,4 +1,10 @@
-import { Controller, Get, Inject, OnModuleInit, UseGuards } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Inject,
+  OnModuleInit,
+  UseGuards,
+} from "@nestjs/common";
 import { ClientGrpc } from "@nestjs/microservices";
 import { AuthGuard } from "@nestjs/passport";
 import { CurrentUser } from "apps/auth/src/current-user.decorator";
@@ -17,7 +23,6 @@ export class UserController implements OnModuleInit {
   async getUsers() {
     return this.userService.FindOneUser({ id: "TEST API GATEWAY" });
   }
-
 
   @Get("jwt")
   @UseGuards(AuthGuard("jwt"))

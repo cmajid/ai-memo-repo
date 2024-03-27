@@ -9,7 +9,6 @@ import { MemoJwtStrategy } from "../../../libs/shared/src/auth/strategies/memo-j
 
 @Module({
   imports: [
-
     // App config
     ConfigModule.forRoot({
       isGlobal: true,

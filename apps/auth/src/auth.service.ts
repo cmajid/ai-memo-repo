@@ -8,7 +8,9 @@ import { get } from "env-var";
 
 @Injectable()
 export class AuthService {
-  private readonly client = new OAuth2Client(get('google_client_id').required().asString());
+  private readonly client = new OAuth2Client(
+    get("google_client_id").required().asString(),
+  );
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
@@ -31,7 +33,7 @@ export class AuthService {
   async verifyToken(idToken: string) {
     const ticket = await this.client.verifyIdToken({
       idToken,
-      audience: get('google_client_id').required().asString(),
+      audience: get("google_client_id").required().asString(),
     });
     const payload = ticket.getPayload();
     const user = this.mapUserEntity(payload);

@@ -18,8 +18,8 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
     private authService: AuthService,
   ) {
     super({
-      clientID: get('google_client_id').required().asString(),
-      clientSecret: get('google_client_secret').required().asString(),
+      clientID: get("google_client_id").required().asString(),
+      clientSecret: get("google_client_secret").required().asString(),
       callbackURL: "http://localhost:3001/auth/google/callback",
       scope: ["email", "profile"],
     });

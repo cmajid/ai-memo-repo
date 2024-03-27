@@ -6,7 +6,6 @@ import * as Joi from "joi";
 
 @Module({
   imports: [
-
     // App config
     ConfigModule.forRoot({
       isGlobal: true,

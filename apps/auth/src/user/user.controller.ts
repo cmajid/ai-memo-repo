@@ -7,8 +7,7 @@ import { UserService } from "./user.service";
 
 @Controller("users")
 export class UserController {
-
-  constructor(private readonly userService : UserService){}
+  constructor(private readonly userService: UserService) {}
 
   @Get("jwt")
   @UseGuards(AuthGuard("jwt"))
@@ -25,8 +24,8 @@ export class UserController {
   @GrpcMethod("UserService", "ValidateUser")
   validateUser(data) {
     console.log("UserService", "ValidateUser", data);
-    const result = this.userService.validateUser(data.email)
+    const result = this.userService.validateUser(data.email);
     console.log("result", result);
-    return result
+    return result;
   }
 }
