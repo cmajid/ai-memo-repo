@@ -10,6 +10,7 @@ async function bootstrap() {
   const port = configService.get("PORT");
   const grpcPort = configService.get("GRPC_URI");
 
+  // USER_SERVICE
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
