@@ -1,24 +1,23 @@
 import { NestFactory } from "@nestjs/core";
 import { AuthModule } from "./auth.module";
 import { ConfigService } from "@nestjs/config";
-import { MicroserviceOptions, Transport } from "@nestjs/microservices";
-import { join } from "path";
+import { MicroserviceOptions } from "@nestjs/microservices";
+import SharedModule from "@app/shared/shared.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
   const configService = app.get(ConfigService);
   const port = configService.get("PORT");
-  const grpcPort = configService.get("GRPC_URI");
+  const userGrpcPort = configService.get("GRPC_USERS_SERVICE_URI");
+  const authGrpcPort = configService.get("GRPC_AUTH_SERVICE_URI");
 
-  // USER_SERVICE
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.GRPC,
-    options: {
-      package: "users",
-      protoPath: join(__dirname, "../../../proto/user.proto"),
-      url: grpcPort,
-    },
-  });
+  app.connectMicroservice<MicroserviceOptions>(
+    SharedModule.getUserService_gPRC_Server(userGrpcPort),
+  );
+
+  app.connectMicroservice<MicroserviceOptions>(
+    SharedModule.getAuthService_gPRC_Server(authGrpcPort),
+  );
 
   await app.startAllMicroservices();
   await app.listen(port);

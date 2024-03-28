@@ -29,12 +29,11 @@ const appConfig = {
     JwtModule.registerAsync(jwtConfig),
     ConfigModule.forRoot(appConfig),
     ClientsModule.register([
-      SharedModule.getUserService_gRPC_Client()
+      SharedModule.getAuthService_gRPC_Client(),
+      SharedModule.getUserService_gRPC_Client(),
     ]),
   ],
   controllers: [AuthController],
   providers: [AuthService, MemoJwtStrategy, MemoGoogleStrategy],
 })
 export class AuthModule {}
-
-

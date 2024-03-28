@@ -10,15 +10,19 @@ const appConfig = {
   isGlobal: true,
   validationSchema: Joi.object({
     PORT: Joi.number().required(),
-    GRPC_URI: Joi.string().required(),
+    GRPC_USERS_SERVICE_URI: Joi.string().required(),
+    GRPC_AUTH_SERVICE_URI: Joi.string().required(),
   }),
   envFilePath: "./apps/gateway/.env",
-}
+};
 
 @Module({
   imports: [
     ConfigModule.forRoot(appConfig),
-    ClientsModule.register([SharedModule.getUserService_gRPC_Client()]),
+    ClientsModule.register([
+      SharedModule.getAuthService_gRPC_Client(),
+      SharedModule.getUserService_gRPC_Client(),
+    ]),
   ],
   controllers: [UserController],
   providers: [MemoJwtStrategy],

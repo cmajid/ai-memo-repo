@@ -21,11 +21,5 @@ export class UserController {
     return data;
   }
 
-  @GrpcMethod("UserService", "ValidateUser")
-  validateUser(data) {
-    console.log("UserService", "ValidateUser", data);
-    const result = this.userService.validateUser(data.email);
-    console.log("result", result);
-    return result;
-  }
+
 }
