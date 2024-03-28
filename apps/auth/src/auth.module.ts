@@ -3,7 +3,7 @@ import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { ConfigModule } from "@nestjs/config";
 import { PassportModule } from "@nestjs/passport";
-import { MemoGoogleStrategy } from "./strategies/memo-google.strategy";
+import { MemoGoogleStrategy } from "../../../libs/shared/src/auth/strategies/memo-google.strategy";
 import { UserModule } from "./user/user.module";
 import * as Joi from "joi";
 import { JwtModule } from "@nestjs/jwt";

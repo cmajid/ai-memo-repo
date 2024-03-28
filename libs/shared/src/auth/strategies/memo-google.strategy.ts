@@ -2,21 +2,21 @@ import { PassportStrategy } from "@nestjs/passport";
 import { Profile, Strategy, VerifyCallback } from "passport-google-oauth20";
 import { config } from "dotenv";
 
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 
-import { AuthService } from "../auth.service";
-import { UserService } from "../user/user.service";
-import { User } from "../user/schemas/user.schema";
 import { get } from "env-var";
+import IProtoAuthService from "proto/interfaces/auth.service.proto.interface";
+import { ClientGrpc } from "@nestjs/microservices";
+import { User } from "proto/interfaces/user.proto.type";
 
 config();
 
 @Injectable()
-export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
-  constructor(
-    private userService: UserService,
-    private authService: AuthService,
-  ) {
+export class MemoGoogleStrategy
+  extends PassportStrategy(Strategy, "google")
+  implements OnModuleInit
+{
+  constructor(@Inject("AUTH_SERVICE") private readonly client: ClientGrpc) {
     super({
       clientID: get("google_client_id").required().asString(),
       clientSecret: get("google_client_secret").required().asString(),
@@ -24,11 +24,15 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
       scope: ["email", "profile"],
     });
   }
+  private authService: IProtoAuthService;
+  onModuleInit() {
+    this.authService = this.client.getService("AuthService");
+  }
   async validate(
     accessToken: string,
     refreshToken: string,
     profile: Profile,
-    done: VerifyCallback,
+    done: VerifyCallback
   ): Promise<any> {
     const user = {
       provider: "google",
@@ -36,11 +40,7 @@ export class MemoGoogleStrategy extends PassportStrategy(Strategy, "google") {
       email: profile.emails[0].value,
       photo: profile.photos[0].value,
     } as User;
-    const verify = this.userService.tryToRegister(user);
-    if (!verify) throw new BadRequestException();
-
-    // const jwtToken = this.authService.login(accessToken, user.email, user.name);
-    const jwtToken = this.authService.login(user);
-    done(null, jwtToken);
+    const result = await this.authService.Login(user).toPromise();
+    done(null, result);
   }
 }

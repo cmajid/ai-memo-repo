@@ -3,18 +3,23 @@ syntax = "proto3";
 package auth;
 
 service AuthService {
-    rpc ValidateUser (ValidateUserRequestDto) returns (User){}
+    rpc ValidateUser (ValidateUserRequestDto) returns (UserDto){}
+    rpc Login(UserDto) returns (LoginResponseDto) {}
 }
 
 message ValidateUserRequestDto {
     string email = 1;
 }
 
-message User {
+message UserDto {
     string id = 1;
     string name = 2;
     string email = 3;
     string photo = 4;
     string provider = 5;
     string subscribed = 6;
+}
+
+message LoginResponseDto {
+    string token = 1;
 }

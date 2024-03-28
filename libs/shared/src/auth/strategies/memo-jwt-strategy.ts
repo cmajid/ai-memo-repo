@@ -10,7 +10,6 @@ export class MemoJwtStrategy
   extends PassportStrategy(Strategy, "jwt")
   implements OnModuleInit
 {
-  private authService: IProtoAuthService;
   constructor(@Inject("AUTH_SERVICE") private readonly client: ClientGrpc) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -18,6 +17,7 @@ export class MemoJwtStrategy
       secretOrKey: get("secret_key").required().asString(),
     });
   }
+  private authService: IProtoAuthService;
   onModuleInit() {
     this.authService = this.client.getService("AuthService");
   }
@@ -26,6 +26,8 @@ export class MemoJwtStrategy
     const user = await this.authService
       .ValidateUser({ email: payload.email })
       .toPromise();
+
+      console.log("HERE:", user)
     return user;
   }
 }

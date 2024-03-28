@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UseGuards,
+} from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthTokenVerifyRequestDto } from "./dto/auth-token-verify-request.dto";
@@ -21,7 +28,7 @@ export class AuthController {
   @Get("google/callback")
   @UseGuards(AuthGuard("google"))
   googleAuthRedirect(@Req() req) {
-    return { access_token: req.user }; // Assuming `req.user` contains the JWT token
+    return req.user; // Assuming `req.user` contains the JWT token
   }
 
   @Post("verify")
@@ -39,5 +46,11 @@ export class AuthController {
   validateUser(data) {
     const result = this.userService.validateUser(data.email);
     return result;
+  }
+
+  @GrpcMethod("AuthService", "Login")
+  login(data) {
+    const token = this.authService.login(data);
+    return { token };
   }
 }

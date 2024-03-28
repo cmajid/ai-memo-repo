@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { OAuth2Client, TokenPayload } from "google-auth-library";
 import { User } from "./user/schemas/user.schema";
@@ -9,25 +9,24 @@ import { get } from "env-var";
 @Injectable()
 export class AuthService {
   private readonly client = new OAuth2Client(
-    get("google_client_id").required().asString(),
+    get("google_client_id").required().asString()
   );
   constructor(
     private readonly jwtService: JwtService,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
   login(user: User) {
-    const accessToken = this.getAccessToken(user.providerId);
-    const payload = { accessToken, email: user.email, name: user.name };
+    const verify = this.userService.tryToRegister(user);
+    if (!verify) throw new BadRequestException();
+
+    const payload = {
+      userId: user.providerId,
+      email: user.email,
+      name: user.name,
+    };
     const jwtToken = this.jwtService.sign(payload);
     return jwtToken;
-  }
-
-  getAccessToken(userId: string) {
-    const newSignedPayload = { userId };
-    const options = { expiresIn: "1h" };
-    const accessToken = this.jwtService.sign(newSignedPayload, options);
-    return accessToken;
   }
 
   async verifyToken(idToken: string) {

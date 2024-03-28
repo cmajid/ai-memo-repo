@@ -6,7 +6,7 @@ export const jwtConfig: JwtModuleAsyncOptions = {
     return {
       secret: get("secret_key").required().asString(),
       signOptions: {
-        expiresIn: "1h",
+        expiresIn: "15m",
       },
     };
   },
